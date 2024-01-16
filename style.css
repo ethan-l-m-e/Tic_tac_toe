@@ -1,0 +1,26 @@
+.board {
+    border-spacing: 0;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.board tr:first-child td{
+    border-top: none;
+}
+
+.board td:first-child {
+    border-left: none;
+}
+
+.board td:last-child {
+    border-right: none;
+}
+
+.board tr:last-child td {
+    border-bottom: none;
+}
