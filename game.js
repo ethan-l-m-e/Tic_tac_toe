@@ -1,11 +1,7 @@
 "use-strict";
 
 const cells = document.querySelectorAll("td[data-id]");
-cells.forEach(cell => {
-    cell.addEventListener("click", (e) => {
-        playerMove(e);
-    });
-});
+addCellClickListeners();
 
 const BOARD_LENGTH = 3;
 const CROSS = "X"
@@ -33,6 +29,7 @@ function playerMove(e) {
     gameState[cellId] = getPlayerToken();
     if(checkWin(cellId)) {
         document.getElementById("gameResultMessage").innerHTML = `Player ${getPlayerToken()} has won the game!`;
+        gameOver();
     }
     turns++;
 }
@@ -71,6 +68,7 @@ function resetBoard() {
     }
     turns = 0;
     clearMessages();
+    addCellClickListeners();
 }
 
 function clearMessages() {
@@ -80,4 +78,21 @@ function clearMessages() {
 
 function showErrorMessage(e) {
     document.getElementById("errorMessage").innerHTML = e;
+}
+
+
+function gameOver() {
+    removeCellClickListeners();
+}
+
+function removeCellClickListeners() {
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].removeEventListener("click", playerMove);
+    }
+}
+
+function addCellClickListeners() {
+    cells.forEach(cell => {
+        cell.addEventListener("click", playerMove);
+    });
 }
