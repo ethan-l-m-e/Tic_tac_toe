@@ -72,6 +72,7 @@ function resetBoard() {
         gameState[i] = "";
     }
     turns = 0;
+    clearMessages();
 }
 
 function clearMessages() {
