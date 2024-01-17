@@ -24,3 +24,7 @@
 .board tr:last-child td {
     border-bottom: none;
 }
+
+.winning-cell {
+    background-color: red;
+}

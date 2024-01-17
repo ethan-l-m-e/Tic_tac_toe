@@ -55,6 +55,15 @@ function checkWin() {
         let t = getPlayerToken();
         if (gameState[combo[0]] == t && gameState[combo[1]] == t && gameState[combo[2]] == t) {
             w = true;
+
+            // highlight the winning cells
+            cells.forEach((cell) => {
+                if (cell.dataset.id == combo[0] ||
+                    cell.dataset.id == combo[1] ||
+                    cell.dataset.id == combo[2]) {
+                        cell.classList.add("winning-cell");
+                    }
+            });
         }
     });
 
@@ -67,6 +76,7 @@ function checkWin() {
 
 function checkDraw() {
     if (turns >= 8) {
+        // Tell them it's a draw
         document.getElementById("gameResultMessage").innerHTML = "It's a draw!";
         gameOver();
     }
@@ -76,6 +86,7 @@ function resetBoard() {
     console.clear();
     cells.forEach((cell) => {
         cell.innerHTML = "";
+        cell.classList.remove("winning-cell");
     });
     for (let i = 0; i < gameState.length; i++) {
         gameState[i] = "";
