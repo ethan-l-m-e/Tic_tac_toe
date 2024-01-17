@@ -27,14 +27,13 @@ function playerMove(e) {
     let cellId = selectedCell.dataset.id;
     selectedCell.innerHTML = getPlayerToken();
     gameState[cellId] = getPlayerToken();
-    if(checkWin(cellId)) {
-        document.getElementById("gameResultMessage").innerHTML = `Player ${getPlayerToken()} has won the game!`;
-        gameOver();
-    }
+    
+    checkWin();
+    checkDraw();
     turns++;
 }
 
-function checkWin(cellId) {
+function checkWin() {
     let w = false;
 
     const winningCombos = [
@@ -48,14 +47,24 @@ function checkWin(cellId) {
         [2, 4, 6]
     ];
 
-    // 
     winningCombos.forEach((combo) => {
         let t = getPlayerToken();
         if (gameState[combo[0]] == t && gameState[combo[1]] == t && gameState[combo[2]] == t) {
             w = true;
         }
     });
-    return w;
+
+    if (w) {
+        document.getElementById("gameResultMessage").innerHTML = `Player ${getPlayerToken()} has won the game!`;
+        gameOver();
+    }
+}
+
+function checkDraw() {
+    if (turns >= 8) {
+        document.getElementById("gameResultMessage").innerHTML = "It's a draw!";
+        gameOver();
+    }
 }
 
 function resetBoard() {
