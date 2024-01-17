@@ -56,8 +56,6 @@ function checkWin(cellId) {
         let t = getPlayerToken();
         if (gameState[combo[0]] == t && gameState[combo[1]] == t && gameState[combo[2]] == t) {
             w = true;
-            console.log(combo);
-            console.log(gameState)
         }
     });
     return w;
