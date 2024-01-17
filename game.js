@@ -1,16 +1,20 @@
 "use-strict";
 
+// List of cells in the tic-tac-toe board.
 const cells = document.querySelectorAll("td[data-id]");
+// Add listeners to query for player input.
 addCellClickListeners();
 
-const BOARD_LENGTH = 3;
+// GAME VARIABLES.
 const CROSS = "X"
 const CIRCLE = "O"
-let turns = 0;
+const BOARD_LENGTH = 3;
 const gameState = ["", "", "", "", "", "", "", "", ""];
+let turns = 0;
 
 function getPlayerToken() {
     if (turns % 2 === 0) {
+        // Player with X goes first.
         return CROSS;
     } else {
         return CIRCLE;
@@ -27,7 +31,6 @@ function playerMove(e) {
     let cellId = selectedCell.dataset.id;
     selectedCell.innerHTML = getPlayerToken();
     gameState[cellId] = getPlayerToken();
-    
     checkWin();
     checkDraw();
     turns++;
@@ -47,6 +50,7 @@ function checkWin() {
         [2, 4, 6]
     ];
 
+    // Check if current player has filled in a straight line of 3.
     winningCombos.forEach((combo) => {
         let t = getPlayerToken();
         if (gameState[combo[0]] == t && gameState[combo[1]] == t && gameState[combo[2]] == t) {
@@ -55,6 +59,7 @@ function checkWin() {
     });
 
     if (w) {
+        // Send message of victory.
         document.getElementById("gameResultMessage").innerHTML = `Player ${getPlayerToken()} has won the game!`;
         gameOver();
     }
@@ -88,7 +93,6 @@ function clearMessages() {
 function showErrorMessage(e) {
     document.getElementById("errorMessage").innerHTML = e;
 }
-
 
 function gameOver() {
     removeCellClickListeners();
