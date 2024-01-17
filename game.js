@@ -31,7 +31,7 @@ function playerMove(e) {
     let cellId = selectedCell.dataset.id;
     selectedCell.innerHTML = getPlayerToken();
     gameState[cellId] = getPlayerToken();
-    checkWin();
+    if (checkWin()) return;
     checkDraw();
     turns++;
 }
@@ -72,6 +72,8 @@ function checkWin() {
         document.getElementById("gameResultMessage").innerHTML = `Player ${getPlayerToken()} has won the game!`;
         gameOver();
     }
+
+    return w;
 }
 
 function checkDraw() {
