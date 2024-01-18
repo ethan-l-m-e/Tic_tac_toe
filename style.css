@@ -5,7 +5,6 @@
 body {
     text-align: center;
     background-color: lightgoldenrodyellow;
-    position: fixed;
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -92,10 +91,6 @@ h1 {
 @media only screen and (max-width: 999px) 
 and (max-height: 500px) and (orientation: landscape) {
     /* mobile landscape */
-    body {
-        position: initial;
-    }
-
     h1 {
         display: none;
     }
